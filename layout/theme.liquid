@@ -18,26 +18,27 @@
   {% endif %}
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
+
   <meta name="p:domain_verify" content="58f1b7edfe60da8c2cef8064173441d5"/>
-  
-  <link rel="canonical" href="{{ canonical_url }}" /> 
+
+  <link rel="canonical" href="{{ canonical_url }}" />
 
   {% include 'fb-open-graph-tags' %}
 
   {{ 'styles.css' | asset_url | stylesheet_tag }}
-  {% if settings.google_header_font != "none" %}
+  <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
+  <!-- {% if settings.google_header_font != "none" %}
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.google_header_font }}:300,400,700">
   {% endif %}
   {% if settings.google_nav_font != "none" %}
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.google_nav_font }}:300,400,700">
-  {% endif %}
+  {% endif %} -->
   {{ 'html5shiv.js' | asset_url | script_tag }}
 
   {{ content_for_header }}
-  
+
   <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-  
+
   {{ 'option_selection.js' | shopify_asset_url | script_tag }}
   {{ 'api.jquery.js' | shopify_asset_url | script_tag }}
 
@@ -57,24 +58,24 @@
       -webkit-transition: 0.7s;
       transition: 0.7s;
     }
-    
+
     #fb_like_cont {
       position: relative;
       width: 400px;
       height: 60px;
       overflow: hidden;
     }
-    
+
     #fb_like_cont:hover img {
       opacity: 0;
       filter: alpha(opacity=0);
     }
-    
+
     #fb_like_cont:hover #bura_fb_like {
       opacity: 1;
       filter: alpha(opacity=100);
     }
-    
+
     #fb_like_cont img {
       position: absolute;
       display: inline-block;
@@ -84,17 +85,17 @@
       transition: 0.7s;
       z-index: 10;
     }
-    
+
     #lookbook_cont{
-      text-align: center; 
+      text-align: center;
     }
-    
+
     #lookbook_cont img {
       width:450px;
       height:450px;
       margin:10px;
     }
-    
+
   </style>
   <!-- End Facebook Like button css -->
   <!-- Facebook Pixel Code -->
@@ -151,10 +152,10 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
     </div>
   </div>
   <!-- End toolbar -->
-  
+
   <!-- Begin wrapper -->
   <div id="transparency" class="wrapper">
-    <div class="row">      
+    <div class="row">
       <!-- Begin right navigation -->
       {% if settings.navigation_alignment == "right" %}
       <div class="row" id="header">
@@ -166,27 +167,27 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
               {% if template == 'index' %}
               <h1 style="display:none"><a href="/"></a></h1>
               {% endif %}
-              {% else %}              
+              {% else %}
               <h1><a href="/">{{ shop.name }}</a></h1>
               {% endif %}
-            </div> 
-          </div> 
-          
+            </div>
+          </div>
+
           <section id="nav">
             <div class="span9 inner-right">
               <nav class="main">
                 {% include 'dropdown' %}
-              </nav> 
+              </nav>
               <nav class="mobile clearfix">
                 {% include 'mobile-menu' %}
               </nav>
-            </div> 
-          </section> 
-        </div> 
-      </div> 
+            </div>
+          </section>
+        </div>
+      </div>
       {% endif %}
       <!-- End right navigation -->
-      
+
       <!-- Begin below navigation -->
       {% if settings.navigation_alignment == "below" %}
       <div class="span12 clearfix">
@@ -199,9 +200,9 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
           {% else %}
           <h1><a href="/">{{ shop.name }}</a></h1>
           {% endif %}
-        </div> 
-      </div> 
-      
+        </div>
+      </div>
+
       <section id="nav" class="row">
         <div class="span12">
           <nav class="main">
@@ -209,12 +210,12 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
           </nav> <!-- /.main -->
           <nav class="mobile clearfix">
             {% include 'mobile-menu' %}
-          </nav> <!-- /.mobile --> 
-        </div> 
-      </section> 
+          </nav> <!-- /.mobile -->
+        </div>
+      </section>
       {% endif %}
       <!-- End below navigation -->
-      
+
       <!-- Begin content-->
       <section id="content" class="clearfix">
           {% if template == "list-collections" %}
@@ -223,7 +224,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
               <h1><span>Product Collections</span></h1>
             </div> <!-- /.span12 -->
           </div> <!-- /.row -->
-          
+
           <div class="row products masonry">
             {% for collection in collections %}
             {% unless collection.all_products_count == 0 or collection.handle == "frontpage" %}
@@ -236,18 +237,18 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
           {% endif %}
       </section>
       <!-- End content-->
-      
+
     </div>
   </div>
   <!-- End wrapper -->
-  
+
   <!-- Begin footer -->
   <div class="footer-wrapper">
     <footer>
       <div class="row">
 
         <div class="span12 full-border"></div>
-        
+
         <!-- Begin latest blog post -->
         {% if settings.footer_blog_post and blogs[settings.footer_blog_post].handle == settings.footer_blog_post and blogs[settings.footer_blog_post].articles.size > 0 %}
         {% assign article = blogs[settings.footer_blog_post].articles.first %}
@@ -260,7 +261,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
         </div>
         {% endif %}
         <!-- End latest blog post -->
-        
+
         <!-- Begin footer navigation -->
         <div class="span4 footer-menu">
           <h4>{{ settings.footer_linklist_title }}</h4>
@@ -271,10 +272,10 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
           </ul>
         </div>
         <!-- End footer navigation -->
-        
+
         <!-- Begin newsletter/social -->
         <div class="span4">
-          
+
           {% if settings.footer_display_newsletter %}
           <div class="p30">
             <h4>{{ settings.footer_newsletter_title }}</h4>
@@ -283,7 +284,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
             </form>
           </div>
           {% endif %}
-          
+
           <div class="clearfix">
           {% if settings.enable_social_links %}
             <h4>{{ settings.footer_social_title }}</h4>
@@ -306,7 +307,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
          <!--  End Facebook Like Button -->
         </div>
         <!-- End newsletter/social -->
-        
+
         <!-- Begin copyright -->
         <div class="span12 tc copyright">
           <p>Copyright &copy; {{ 'now' | date: "%Y" }} {{ shop.name }} {% if settings.designed_by %}{% endif %} </p>
@@ -327,7 +328,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
     </footer>
   </div>
   <!-- End footer -->
-    
+
   {% if settings.display_slideshow %}
     {{ 'jquery.flexslider-min.js' | asset_url | script_tag }}
   {% endif %}
@@ -337,9 +338,9 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
   {{ 'jquery.tweet.js' | asset_url | script_tag }}
   {{ 'jquery.fancybox.js' | asset_url | script_tag }}
   {{ 'scripts.js' | asset_url | script_tag }}
-  
+
   {% if template contains 'product' %}
-  
+
   <script>
 
   var selectCallback = function(variant, selector) {
@@ -356,7 +357,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
       jQuery('#price-preview').text(message);
     }
   };
-  
+
   jQuery(document).ready(function($){
     new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
 
@@ -364,7 +365,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
     {% if product.options.size == 1 and product.options.first != 'Title' %}
       $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
     {% endif %}
-  
+
     // Auto-select first available variant on page load.
     {% assign found_one_in_stock = false %}
     {% for variant in product.variants %}
@@ -379,6 +380,6 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
   });
   </script>
   {% endif %}
-  
+
 </body>
 </html>
