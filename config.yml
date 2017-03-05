@@ -1,0 +1,6 @@
+development:
+  password: a02b9fddb5e9ad45d41729ce0e4218f9
+  theme_id: "178349636"
+  store: bura.myshopify.com
+  ignore_files:
+    - config/settings_data.json
