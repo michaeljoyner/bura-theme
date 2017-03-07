@@ -26,6 +26,7 @@
   {% include 'fb-open-graph-tags' %}
 
   {{ 'styles.css' | asset_url | stylesheet_tag }}
+  {{ 'custom.css' | asset_url | stylesheet_tag }}
   <link href="https://fonts.googleapis.com/css?family=Rubik:400,700" rel="stylesheet">
   <!-- {% if settings.google_header_font != "none" %}
   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family={{ settings.google_header_font }}:300,400,700">
@@ -115,7 +116,7 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
 <!-- End Facebook Pixel Code -->
 </head>
 
-<body>
+<body class="no-js">
   <!-- Facebook SDK -->
   <div id="fb-root"></div>
   <script>(function(d, s, id) {
@@ -359,9 +360,16 @@ src="https://www.facebook.com/tr?id=1638852666407686&ev=PageView&noscript=1"
   };
 
   jQuery(document).ready(function($){
-    new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback });
+    document.body.classList.remove('no-js');
+    var optionSelectors = new Shopify.OptionSelectors("product-select", { product: {{ product | json }}, onVariantSelected: selectCallback, enableHistoryState: true });
+    //update variant using buttons (not select)
+    var variant_options = document.querySelectorAll('[data-for-variant]');
+    for(var i = 0; i < variant_options.length; i++) {
+      variant_options[i].addEventListener('click', function(ev) {
+        optionSelectors.selectVariant(ev.target.getAttribute('data-for-variant'));
+      });
+    }
 
-    // Add label if only one product option and it isn't 'Title'.
     {% if product.options.size == 1 and product.options.first != 'Title' %}
       $('.selector-wrapper:eq(0)').prepend('<label>{{ product.options.first }}</label>');
     {% endif %}
