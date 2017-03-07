@@ -1,0 +1,3 @@
+@mixin background-file($asset-image-with-extension) {
+ background-image: url(‘ {{ “#{$asset-image-with-extension}” | asset_url }} ‘)
+}
